@@ -36,8 +36,8 @@ see [zookeeper cluster in docker](https://github.com/ppdouble/zookeeper-cluster-
 - connections among borkers and host
 
 1. initial connect, e.g. localhost:19093
-2. kafka1 response with metadata. "localhost:19093" should be used for client to produce operation or consume operation
-3. The client connects the broker for produce operation or consume operation etc.
+2. kafka1 response with metadata. "localhost:19093" should be used for the client on host to produce operation or consume operation
+3. The client on host connects the broker for produce operation or consume operation etc.
 
 ## Client
 
