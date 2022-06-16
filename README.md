@@ -8,3 +8,4 @@ Fedora 29 x86_64 workstation
 
 ## listener setting
 
+![advertised listener setting](doc/listenersetting.png)
