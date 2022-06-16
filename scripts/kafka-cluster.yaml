@@ -1,0 +1,80 @@
+version: "3.7"
+
+services:
+  kafka-1:
+    image: bitnami/kafka:3.1.1
+    hostname: kafka1
+    container_name: kafka-cluster-1
+    working_dir: /opt/bitnami/kafka
+    volumes:
+      - /home/data/cluster/kafka/kafka-cluster-1:/bitnami/kafka
+    ports:
+      - '19093:9093'
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_BROKER_ID=21
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zoo1:2181,zoo2:2181,zoo3:2181
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=BROKERCLIENT:PLAINTEXT,HOSTCLIENT:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=BROKERCLIENT://0.0.0.0:9092,HOSTCLIENT://0.0.0.0:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=BROKERCLIENT://kafka1:9092,HOSTCLIENT://localhost:19093
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=BROKERCLIENT
+    extra_hosts:
+      - "kafka2:172.19.0.22"
+      - "kafka3:172.19.0.23"
+    networks:
+        myzkcomposeprj_brzk-kafka:
+            ipv4_address: 172.19.0.21
+
+  kafka-2:
+    image: bitnami/kafka:3.1.1
+    hostname: kafka2
+    container_name: kafka-cluster-2
+    working_dir: /opt/bitnami/kafka
+    volumes:
+      - /home/data/cluster/kafka/kafka-cluster-2:/bitnami/kafka
+    ports:
+      - '29093:9093'
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_BROKER_ID=22
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zoo1:2181,zoo2:2181,zoo3:2181
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=BROKERCLIENT:PLAINTEXT,HOSTCLIENT:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=BROKERCLIENT://0.0.0.0:9092,HOSTCLIENT://0.0.0.0:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=BROKERCLIENT://kafka2:9092,HOSTCLIENT://localhost:29093
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=BROKERCLIENT
+    extra_hosts:
+      - "kafka1:172.19.0.21"
+      - "kafka3:172.19.0.23"
+    networks:
+        myzkcomposeprj_brzk-kafka:
+            ipv4_address: 172.19.0.22
+
+
+  kafka-3:
+    image: bitnami/kafka:3.1.1
+    hostname: kafka3
+    container_name: kafka-cluster-3
+    working_dir: /opt/bitnami/kafka
+    volumes:
+      - /home/data/cluster/kafka/kafka-cluster-3:/bitnami/kafka
+    ports:
+      - '39093:9093'
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_BROKER_ID=23
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zoo1:2181,zoo2:2181,zoo3:2181
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=BROKERCLIENT:PLAINTEXT,HOSTCLIENT:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=BROKERCLIENT://0.0.0.0:9092,HOSTCLIENT://0.0.0.0:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=BROKERCLIENT://kafka3:9092,HOSTCLIENT://localhost:39093
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=BROKERCLIENT
+    extra_hosts:
+      - "kafka1:172.19.0.21"
+      - "kafka2:172.19.0.22"
+    networks:
+        myzkcomposeprj_brzk-kafka:
+            ipv4_address: 172.19.0.23
+
+networks:
+    myzkcomposeprj_brzk-kafka:
+        external:
+            name: myzkcomposeprj_brzk-kafka
