@@ -35,13 +35,13 @@ see [zookeeper cluster in docker](https://github.com/ppdouble/zookeeper-cluster-
 - connections among borkers
 
 1. initial connect, e.g. kafka2:9092
-2. kafka2 response with metadata. "kafka2:9092" should be used for client to `produce` operation or `consume` operation
+2. kafka2 response with metadata. "kafka2:9092" should be used for the client to `produce` events or `consume` events.
 3. The client connects the broker for `produce` operation or `consume` operation etc. 
 
 - connections among borkers and host
 
 1. initial connect, e.g. localhost:19093
-2. kafka1 response with metadata. "localhost:19093" should be used for the client on host to `produce` operation or `consume` operation
+2. kafka1 response with metadata. "localhost:19093" should be used for the client on host to `produce` events or `consume` events. 
 3. The client on host connects the broker for `produce` operation or `consume` operation etc.
 
 ## Client
