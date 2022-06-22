@@ -1,5 +1,5 @@
 ---
-title: kafka 3.1.1 cluster with three node in docker
+title: kafka 3.1.1 cluster with three nodes in docker
 
 ---
 
@@ -67,7 +67,7 @@ first event
 second event
 ```
 
-more see scripts in this project
+see more scripts in folder `scripts/`
 
 ## Java Api
 
